@@ -9,11 +9,12 @@ It starts from [addyosmani/agent-skills](https://github.com/addyosmani/agent-ski
 | Path | What goes there | Loaded |
 | --- | --- | --- |
 | `AGENTS.md` | Short, always-on rules every agent reads (`CLAUDE.md` imports it) | Every turn |
-| `rules/` | One-page policies by topic, linked from `AGENTS.md` | When relevant |
+| `rules/` | One-page policies by topic: git, code style, testing, security, dependencies, repo baseline | Every session (via hook) |
 | `skills/` | Our own skills (`<name>/SKILL.md`). Same name as an upstream skill = replaces it | On demand |
 | `agents/` | Our own subagent personas (override upstream by file name) | On demand |
 | `commands/` | Our own slash-command harnesses | When invoked |
-| `hooks/` | Hook scripts and the settings snippets that wire them | On events |
+| `hooks/` | Hook scripts and `hooks.json`; `session-start.sh` injects the house rules into every session | On events |
+| `templates/repo/` | Starter files for every new repo (`AGENTS.md`, PR template, `.editorconfig`) | When creating a repo |
 | `references/` | Checklists that skills link to | Via skills |
 | `evals/` | Tests for our own skills | CI / on demand |
 | `upstream/addyosmani-agent-skills/` | Vendored upstream, pinned to a release. **Never edit.** | Build input |
@@ -42,7 +43,13 @@ To change how an upstream skill behaves, copy it to `skills/<same-name>/`, edit 
 
 On Claude Code older than 2.1.275, run `/plugin marketplace add bravelittle/brain` and then `/plugin install brain@brain`. The repo is private, so the machine needs GitHub access to it.
 
-Commands then appear as `/brain:spec`, `/brain:plan`, `/brain:build`, `/brain:test`, `/brain:review`, `/brain:ship` and more. For the always-on rules, import `AGENTS.md` from your project's `CLAUDE.md` or copy it. Other agents: see `adapters/`.
+Commands then appear as `/brain:spec`, `/brain:plan`, `/brain:build`, `/brain:test`, `/brain:review`, `/brain:ship` and more. The plugin's session-start hook loads `AGENTS.md` and `rules/` into every session, so the house rules apply in any repo with the plugin installed. Each repo adds its own `AGENTS.md` from `templates/repo/` for its stack and commands; that file wins where it differs. Other agents: see `adapters/`.
+
+## Adding a new repo
+
+1. Copy `templates/repo/` into it and fill in `AGENTS.md`.
+2. Meet `rules/repo-baseline.md` (CI, branch protection, dependency updates).
+3. Install the plugin. Language rules load on their own from the `<language>-conventions` skills; add a new one in `skills/` when a repo brings a new language.
 
 ## Licence
 

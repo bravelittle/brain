@@ -1,8 +1,12 @@
 # Hooks
 
-Hook scripts plus the settings snippet that wires each one. Not wired into the plugin yet.
+Hook scripts plus the settings snippet that wires each one. `hooks.json` and every `*.sh` here are copied into `dist/hooks/` and run by the plugin.
 
-Upstream hooks worth adopting (see `upstream/addyosmani-agent-skills/hooks/`):
+Ours:
+
+- `session-start.sh`: injects `house-rules.md` (built from `AGENTS.md` and `rules/`) at session start, so the house rules apply in every repo that has the plugin, not only in this one.
+
+Upstream hooks worth adopting later (see `upstream/addyosmani-agent-skills/hooks/`):
 
 - `sdd-cache-pre.sh` / `sdd-cache-post.sh`: cache documentation fetches with HTTP revalidation, for `source-driven-development`.
 - `simplify-ignore.sh`: hide code marked `simplify-ignore-start/end` from refactors.

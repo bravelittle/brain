@@ -42,6 +42,26 @@ find "$ROOT/commands" -maxdepth 1 -name '*.md' ! -name README.md -exec cp {} "$D
 # Licence for the vendored material travels with it.
 cp "$UP/LICENSE" "$DIST/LICENSE-agent-skills"
 
+# House rules: AGENTS.md plus every rules/*.md, injected at session start by hooks/session-start.sh.
+{
+  echo "# Brain house rules"
+  echo
+  echo "These rules come from the brain (github.com/bravelittle/brain) and apply in every repo. Paths such as rules/git.md name sections of this text. The current repo's own AGENTS.md or CLAUDE.md overrides them where they differ."
+  echo
+  sed '1d' "$ROOT/AGENTS.md"
+  for f in "$ROOT"/rules/*.md; do
+    [ "$(basename "$f")" = README.md ] && continue
+    echo
+    echo "---"
+    echo "rules/$(basename "$f"):"
+    echo
+    cat "$f"
+  done
+} > "$DIST/house-rules.md"
+
+mkdir -p "$DIST/hooks"
+find "$ROOT/hooks" -maxdepth 1 \( -name '*.sh' -o -name hooks.json \) -exec cp {} "$DIST/hooks/" \;
+
 # Claude Code plugin: dist/ is the plugin root, so skills/, commands/ and agents/ are found by convention.
 mkdir -p "$DIST/.claude-plugin"
 cp "$ROOT/adapters/claude/plugin.json" "$DIST/.claude-plugin/plugin.json"

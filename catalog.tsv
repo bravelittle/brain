@@ -25,3 +25,5 @@ documentation-and-adrs	core	ADRs and docs
 observability-and-instrumentation	core	Logs, metrics, traces
 shipping-and-launch	adapt	Override with house release process
 using-agent-skills	drop	Superseded by CATALOG.md and native skill routing
+typescript-conventions	core	House TypeScript defaults
+python-conventions	core	House Python defaults

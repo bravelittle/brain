@@ -18,6 +18,16 @@ Always-on rules for every coding agent that uses the brain. Keep this file short
 - Small, atomic commits with clear messages; one concern per PR. See `rules/git.md`.
 - Report results faithfully: if something failed or was skipped, say so.
 
-## House conventions
+## Precedence
 
-<!-- TODO: fill in. Examples: main languages and versions, package manager, branch naming, PR size limit, deploy target. -->
+1. The current repo's own `AGENTS.md` (its stack, commands and deviations).
+2. These brain rules.
+3. Brain skills, then upstream skills.
+
+## House rules
+
+- `rules/git.md`: trunk-based, `<type>/<desc>` branches, Conventional Commits, PRs under ~400 lines, squash-merge, SemVer.
+- `rules/code-style.md`: tools enforce formatting; match surrounding code; comments explain why.
+- `rules/testing.md`, `rules/security.md`, `rules/dependencies.md`.
+- `rules/repo-baseline.md`: what every repo must have. New repos start from `templates/repo/`.
+- Language specifics live in skills named `<language>-conventions` and load when you work in that language.
