@@ -1,0 +1,10 @@
+{
+  "name": "brain",
+  "version": "0.1.0",
+  "description": "Central knowledge base of coding procedures: skills, commands and agents built from addyosmani/agent-skills plus house rules.",
+  "author": {
+    "name": "bravelittle"
+  },
+  "repository": "https://github.com/bravelittle/brain",
+  "license": "MIT"
+}
