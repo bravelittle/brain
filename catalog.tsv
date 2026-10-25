@@ -1,0 +1,27 @@
+# skill	fit	note
+# fit: core = adopt as-is | adapt = adopt, then override in skills/ | optional = shipped, not auto-loaded by rules | web = web projects only | drop = excluded from the build
+interview-me	core	Clarify intent one question at a time
+idea-refine	optional	Ideation for vague ideas
+spec-driven-development	core	Spec before code
+planning-and-task-breakdown	core	Spec to ordered tasks
+incremental-implementation	core	Thin verifiable slices
+test-driven-development	core	Red-green-refactor, prove bugs with a test
+context-engineering	core	Rules files and session context
+source-driven-development	core	Verify against official docs
+doubt-driven-development	optional	Adversarial review for high-stakes work
+constraint-driven-development	core	CONSTRAINTS.md, stop the bar from being lowered
+api-and-interface-design	core	Stable contracts
+frontend-ui-engineering	web	Accessible production UI
+browser-testing-with-devtools	web	Needs chrome-devtools MCP
+debugging-and-error-recovery	core	Root-cause debugging
+code-review-and-quality	core	Five-axis review
+code-simplification	core	Clarity refactors
+security-and-hardening	core	OWASP, auth, deps, privacy
+performance-optimization	adapt	Add backend and non-web targets
+git-workflow-and-versioning	adapt	Override with house branching and commit rules
+ci-cd-and-automation	adapt	Override with house CI platform
+deprecation-and-migration	core	Expand/contract migrations
+documentation-and-adrs	core	ADRs and docs
+observability-and-instrumentation	core	Logs, metrics, traces
+shipping-and-launch	adapt	Override with house release process
+using-agent-skills	drop	Superseded by CATALOG.md and native skill routing

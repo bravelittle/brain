@@ -1,0 +1,13 @@
+name: build-check
+on: [pull_request, push]
+jobs:
+  dist-up-to-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild dist/ and CATALOG.md
+        run: scripts/build.sh
+      - name: Fail if the committed build is stale
+        run: |
+          git add -A
+          git diff --cached --stat --exit-code || { echo "Run scripts/build.sh and commit dist/ and CATALOG.md"; exit 1; }
